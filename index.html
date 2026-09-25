@@ -1,769 +1,536 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HASSY SEO SMS BOMBER</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>SMS Bomber - by HASSY Seo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(145deg, #0b1120 0%, #1a2639 100%);
+            padding: 1.5rem;
+        }
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+        .card {
+            max-width: 480px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            border-radius: 2.5rem;
+            padding: 2.2rem 2rem 2rem;
+            box-shadow: 0 25px 50px -8px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
 
-    :root {
-      --bg: #07070b;
-      --card: #101016;
-      --card2: #15151d;
-      --text: #f5f5f7;
-      --muted: #8d8d9e;
-      --red: #ff1744;
-      --red2: #b8002d;
-      --green: #00e676;
-      --border: rgba(255,255,255,.08);
-      --shadow: rgba(255,23,68,0.25);
-      --input-bg: #0c0c12;
-    }
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
 
-    body {
-      font-family: 'Inter', Arial, sans-serif;
-      background: radial-gradient(circle at 50% -10%, rgba(255,23,68,.18), transparent 35%),
-                  linear-gradient(180deg, #07070b, #0b0b10);
-      background-color: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      transition: background .3s ease, color .3s ease;
-    }
+        .header .icon {
+            font-size: 2.8rem;
+            color: #f97316;
+            background: rgba(249, 115, 22, 0.12);
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            border-radius: 50%;
+            margin: 0 auto 0.75rem;
+            border: 1px solid rgba(249, 115, 22, 0.25);
+            animation: pulse 2s infinite;
+        }
 
-    /* Light theme */
-    body.light {
-      --bg: #f5f5f7;
-      --card: #ffffff;
-      --card2: #f1f1f5;
-      --text: #111118;
-      --muted: #666674;
-      --border: rgba(0,0,0,.08);
-      --shadow: rgba(255,23,68,0.15);
-      --input-bg: #f0f0f3;
-      background: radial-gradient(circle at 50% -10%, rgba(255,23,68,.08), transparent 35%),
-                  linear-gradient(180deg, #f5f5f7, #eaeaf0);
-    }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(249, 115, 22, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
+        }
 
-    /* Header */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 50;
-      background: rgba(7,7,11,.85);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--border);
-      transition: background .3s, border-color .3s;
-    }
-    body.light header {
-      background: rgba(245,245,247,.85);
-    }
+        .header h1 {
+            color: #ffffff;
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
 
-    .header-inner {
-      max-width: 1000px;
-      margin: auto;
-      padding: 13px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+        .header h1 span {
+            background: linear-gradient(135deg, #f97316, #fb923c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+        .header .sub {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
 
-    .logo {
-      width: 38px;
-      height: 38px;
-      border-radius: 11px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, #ff1744, #650019);
-      box-shadow: 0 0 25px rgba(255,23,68,.35);
-    }
-    .logo i { font-size: 16px; color: white; }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
 
-    .brand-title {
-      font-size: 15px;
-      font-weight: 900;
-      letter-spacing: .08em;
-    }
-    .brand-sub {
-      color: var(--red);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: .18em;
-      margin-top: 3px;
-    }
+        .form-group label {
+            display: block;
+            color: #e2e8f0;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 0.4rem;
+        }
 
-    .online {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(0,230,118,.22);
-      background: rgba(0,230,118,.06);
-      color: var(--green);
-      font-size: 10px;
-      font-weight: 700;
-    }
-    .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 10px var(--green);
-      animation: pulse 1.8s infinite;
-    }
-    @keyframes pulse {
-      0%,100% { opacity: .6; transform: scale(.9); }
-      50% { opacity: 1; transform: scale(1.2); }
-    }
+        .form-group label i {
+            margin-right: 8px;
+            color: #f97316;
+            width: 18px;
+        }
 
-    /* Main */
-    main {
-      max-width: 650px;
-      margin: auto;
-      padding: 105px 16px 35px;
-    }
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 1.2rem;
+            padding: 0.2rem 0.2rem 0.2rem 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.25s ease;
+        }
 
-    .card {
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(145deg, #111118, #0d0d13);
-      border: 1px solid var(--border);
-      border-radius: 25px;
-      padding: 28px 20px;
-      box-shadow: 0 25px 70px rgba(0,0,0,.55), 0 0 0 1px rgba(255,23,68,.025);
-      transition: background .3s, border-color .3s, box-shadow .3s, transform .3s;
-      animation: scaleIn .5s cubic-bezier(.16,1,.3,1) both;
-    }
-    body.light .card {
-      background: linear-gradient(145deg, #ffffff, #f5f5f7);
-      box-shadow: 0 25px 70px rgba(0,0,0,.08);
-    }
-    .card:hover {
-      transform: translateY(-3px);
-    }
-    .card::before {
-      content: '';
-      position: absolute;
-      width: 220px;
-      height: 220px;
-      top: -130px;
-      right: -100px;
-      background: var(--red);
-      filter: blur(100px);
-      opacity: .12;
-    }
+        .input-wrapper:focus-within {
+            border-color: #f97316;
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.25);
+        }
 
-    @keyframes scaleIn {
-      from { opacity: 0; transform: scale(.96); }
-      to { opacity: 1; transform: scale(1); }
-    }
+        .input-wrapper .prefix {
+            color: #94a3b8;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-right: 6px;
+        }
 
-    /* Hero */
-    .hero { text-align: center; position: relative; }
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 7px 12px;
-      border: 1px solid rgba(255,23,68,.22);
-      background: rgba(255,23,68,.06);
-      border-radius: 999px;
-      color: #ff6685;
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-    }
-    .badge i { font-size: 8px; }
+        .input-wrapper input {
+            width: 100%;
+            padding: 0.85rem 0.8rem;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 500;
+        }
 
-    h1 {
-      margin-top: 17px;
-      font-size: clamp(2rem, 8vw, 3.4rem);
-      line-height: 1;
-      font-weight: 900;
-      letter-spacing: -.04em;
-    }
-    h1 span {
-      color: var(--red);
-      text-shadow: 0 0 30px rgba(255,23,68,.28);
-    }
+        .input-wrapper input::placeholder {
+            color: #64748b;
+        }
 
-    .subtitle {
-      margin: 13px auto 0;
-      max-width: 420px;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.7;
-    }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
 
-    .divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,23,68,.35), transparent);
-      margin: 25px 0;
-    }
+        .btn-bomb {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            border: none;
+            border-radius: 1.8rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 6px 18px rgba(249, 115, 22, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            position: relative;
+        }
 
-    /* Fields */
-    .field { margin-top: 17px; }
-    label {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      color: #aaaab8;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    label i { color: var(--red); }
+        .btn-bomb:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(249, 115, 22, 0.45);
+        }
 
-    .input {
-      display: flex;
-      align-items: center;
-      background: var(--input-bg);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 13px;
-      padding: 5px;
-      transition: .25s;
-    }
-    body.light .input {
-      border-color: rgba(0,0,0,.08);
-    }
-    .input:focus-within {
-      border-color: rgba(255,23,68,.5);
-      box-shadow: 0 0 0 4px rgba(255,23,68,.07);
-    }
+        .btn-bomb:active {
+            transform: scale(0.97);
+        }
 
-    .prefix {
-      width: 38px;
-      height: 38px;
-      display: grid;
-      place-items: center;
-      border-radius: 9px;
-      background: rgba(255,23,68,.08);
-      color: var(--red);
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 800;
-    }
+        .btn-bomb.loading {
+            background: linear-gradient(135deg, #64748b, #475569);
+            cursor: not-allowed;
+            pointer-events: none;
+        }
 
-    input {
-      flex: 1;
-      min-width: 0;
-      background: none;
-      border: 0;
-      outline: 0;
-      color: var(--text);
-      padding: 10px 12px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 14px;
-      font-weight: 600;
-    }
-    input::placeholder { color: #4c4c59; }
-    body.light input::placeholder { color: #888; }
-    .count input { max-width: 180px; }
+        .btn-bomb .btn-text {
+            transition: all 0.3s ease;
+        }
 
-    /* Button with POWERED BY */
-    .btn-wrapper {
-      margin-top: 22px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-    }
+        .btn-bomb .btn-loader {
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
 
-    button.start {
-      width: 100%;
-      padding: 14px;
-      border: 0;
-      border-radius: 13px;
-      background: linear-gradient(135deg, #ff1744, #b4002c);
-      color: white;
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: .08em;
-      cursor: pointer;
-      box-shadow: 0 3px 0 #620019, 0 15px 35px rgba(255,23,68,.18);
-      transition: .2s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-    button.start:hover:not(:disabled) { transform: translateY(-2px); }
-    button.start:active { transform: translateY(1px); }
-    button.start:disabled { opacity: .7; cursor: not-allowed; }
+        .btn-bomb.loading .btn-text {
+            display: none;
+        }
 
-    .powered-by {
-      font-family: 'JetBrains Mono', monospace;
-      color: #666674;
-      font-size: 9px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-    .powered-by b { color: #ff1744; }
-    body.light .powered-by b { color: #ff1744; }
+        .btn-bomb.loading .btn-loader {
+            display: flex;
+        }
 
-    .channel-link-btn {
-      display: inline-block;
-      color: #25D366;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 11px;
-      transition: .2s;
-      letter-spacing: .05em;
-    }
-    .channel-link-btn:hover {
-      color: #ff1744;
-      text-decoration: underline;
-    }
-    .channel-link-btn i { margin-right: 5px; }
+        .btn-bomb .spinner {
+            width: 22px;
+            height: 22px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            border-top: 3px solid #ffffff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
 
-    /* Result */
-    .result {
-      margin-top: 20px;
-      padding: 17px;
-      border-radius: 15px;
-      background: var(--input-bg);
-      border: 1px solid var(--border);
-      transition: background .3s, border-color .3s;
-      display: none;
-    }
-    .result.show { display: block; animation: rise .5s cubic-bezier(.16,1,.3,1) both; }
-    @keyframes rise {
-      from { opacity: 0; transform: translateY(14px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
-    .result-head {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      color: #aaa;
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-    }
-    .result-head i { color: var(--red); }
+        #responseBox {
+            margin-top: 1.5rem;
+            padding: 1rem 1.2rem;
+            border-radius: 1.2rem;
+            background: rgba(0, 0, 0, 0.35);
+            border-left: 4px solid #f97316;
+            color: #e2e8f0;
+            font-size: 0.9rem;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
 
-    .status {
-      margin-top: 13px;
-      min-height: 55px;
-      display: flex;
-      align-items: center;
-      color: #888895;
-      font-size: 12px;
-      line-height: 1.6;
-    }
-    .demo { color: #ff6685; font-weight: 800; }
-    .success-text { color: var(--green); font-weight: 700; }
-    .fail-text { color: var(--red); font-weight: 700; }
+        #responseBox i {
+            color: #f97316;
+            font-size: 1.1rem;
+        }
 
-    /* Editable Channel Block (Hidden - only for editing) */
-    .channel-block {
-      display: none;
-      margin-top: 18px;
-      padding: 14px 12px;
-      border-radius: 16px;
-      background: rgba(255,23,68,.04);
-      border: 1px solid var(--border);
-    }
-    .channel-block .input { background: var(--input-bg); }
+        .footer {
+            margin-top: 2.2rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+        }
 
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 20px 15px 30px;
-      color: #555562;
-      font-size: 9px;
-      line-height: 2;
-      border-top: 1px solid var(--border);
-      margin-top: 10px;
-    }
-    body.light footer { color: #777; }
+        .footer .dev {
+            color: #64748b;
+            font-size: 0.8rem;
+        }
 
-    .footer-brand {
-      font-weight: 800;
-      color: var(--red);
-      letter-spacing: .08em;
-    }
+        .footer .dev strong {
+            color: #e2e8f0;
+        }
 
-    /* Theme Toggle */
-    .theme-btn {
-      position: fixed;
-      right: 18px;
-      bottom: 20px;
-      width: 43px;
-      height: 43px;
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      background: #15151d;
-      color: white;
-      cursor: pointer;
-      z-index: 100;
-      transition: .3s;
-      display: grid;
-      place-items: center;
-      font-size: 18px;
-    }
-    body.light .theme-btn {
-      background: #e0e0e8;
-      color: #111;
-    }
+        .btn-group {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 0.8rem;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 0.5rem 1.2rem 0.5rem 1.5rem;
+            border-radius: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
 
-    /* TikTok Popup */
-    .wa-float {
-      position: fixed;
-      right: 18px;
-      bottom: 75px;
-      z-index: 99;
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      background: #25D366;
-      display: grid;
-      place-items: center;
-      box-shadow: 0 6px 20px rgba(37,211,102,.4);
-      cursor: pointer;
-      border: none;
-      transition: transform .2s;
-      animation: waFloat 2.5s ease-in-out infinite;
-    }
-    .wa-float:hover { transform: scale(1.06); animation-play-state: paused; }
-    .wa-float svg { width: 24px; height: 24px; fill: #fff; }
-    @keyframes waFloat {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
+        .btn-group span {
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
 
-    .wa-popup {
-      position: fixed;
-      right: 18px;
-      bottom: 135px;
-      z-index: 9999;
-      display: none;
-      flex-direction: column;
-      gap: 8px;
-      background: #15151d;
-      border: 1px solid rgba(37,211,102,.25);
-      border-radius: 14px;
-      padding: 10px;
-      box-shadow: 0 10px 40px rgba(0,0,0,.3);
-      width: 190px;
-    }
-    body.light .wa-popup { background: #fff; }
-    .wa-popup.open { display: flex; }
+        .btn-group a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #25D366;
+            color: #fff;
+            padding: 0.4rem 1.2rem 0.4rem 1rem;
+            border-radius: 2.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
 
-    .wa-item {
-      display: block;
-      background: #25D366;
-      color: #fff;
-      text-decoration: none;
-      padding: 9px 10px;
-      border-radius: 9px;
-      font-size: 11px;
-      font-weight: 700;
-      text-align: center;
-      line-height: 1.3;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      box-shadow: 0 2px 0 rgba(0,0,0,.2);
-    }
+        .btn-group a:hover {
+            transform: scale(1.04);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+        }
 
-    /* Mobile */
-    @media (max-width: 480px) {
-      .card { padding: 24px 15px; }
-      .header-inner { padding: 11px 13px; }
-      .brand-title { font-size: 13px; }
-      .online { font-size: 9px; padding: 4px 8px; }
-    }
-  </style>
+        @media (max-width: 440px) {
+            .card {
+                padding: 1.5rem 1.2rem;
+            }
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            .btn-bomb {
+                font-size: 1rem;
+                padding: 0.85rem;
+            }
+        }
+
+        .request-info {
+            margin-top: 0.5rem;
+            padding: 0.5rem 0.8rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 0.8rem;
+            font-size: 0.7rem;
+            color: #94a3b8;
+            display: none;
+            font-family: monospace;
+            word-break: break-all;
+        }
+
+        .request-info.show {
+            display: block;
+        }
+
+        .request-info span {
+            color: #f97316;
+        }
+    </style>
 </head>
 <body>
 
-<header>
-  <div class="header-inner">
-    <div class="brand">
-      <div class="logo"><i class="fa-solid fa-bomb"></i></div>
-      <div>
-        <div class="brand-title">HASSY SEO SMS BOMBER</div>
-        <div class="brand-sub">SECURITY TESTING</div>
-      </div>
-    </div>
-    <div class="online">
-      <span class="dot"></span> ONLINE
-    </div>
-  </div>
-</header>
+<div class="card">
 
-<main>
-  <section class="card">
-
-    <div class="hero">
-      <div class="badge">
-        <i class="fa-solid fa-shield-halved"></i> Authorized Testing Interface
-      </div>
-      <h1>HASSY SEO<span>SMS BOMBER</span></h1>
-      <p class="subtitle">Professional SMS security testing interface with a modern dark terminal-inspired experience.</p>
-    </div>
-
-    <div class="divider"></div>
-
-    <!-- Phone -->
-    <div class="field">
-      <label><i class="fa-solid fa-phone"></i> Target Phone Number</label>
-      <div class="input">
-        <div class="prefix">+</div>
-        <input id="phone" type="tel" inputmode="numeric" placeholder="923001234567" />
-      </div>
-    </div>
-
-    <!-- Count -->
-    <div class="field count">
-      <label><i class="fa-solid fa-hashtag"></i> Number of SMS</label>
-      <div class="input">
-        <input id="count" type="number" min="1" max="500" value="10" />
-      </div>
-    </div>
-
-    <!-- Button + Powered By + Channel Link -->
-    <div class="btn-wrapper">
-      <button class="start" id="start">
-        <i class="fa-solid fa-bomb"></i> START BOMBING
-      </button>
-      
-      <div class="powered-by">
-        POWERED BY <b id="poweredName">HASSY SEO HASSAN</b>
-      </div>
-
-      <a class="channel-link-btn" id="channelLinkBtn" href="https://www.tiktok.com/@hsn_0001?_r=1&_t=ZS-9A1zb7Pz75d" target="_blank" rel="noopener">
-        <i class="fa-brands fa-whatsapp"></i> FOLLOW ME ON TIKTOK 
-      </a>
-    </div>
-
-    <!-- Result -->
-    <div class="result" id="result">
-      <div class="result-head"><i class="fa-solid fa-terminal"></i> SYSTEM STATUS</div>
-      <div class="status" id="status">Ready for authorized security testing.</div>
-    </div>
-
-    <!-- Hidden Editable Channel Block -->
-    <div class="channel-block">
-      <div class="field" style="margin-top:0;">
-        <label><i class="fa-brands fa-whatsapp"></i> Channel Name</label>
-        <div class="input">
-          <input id="channelName" type="text" value="HASSY HASSAN" placeholder="Channel name" />
+    <div class="header">
+        <div class="icon">
+            <i class="fas fa-bomb"></i>
         </div>
-      </div>
-      <div class="field" style="margin-top:6px;">
-        <label><i class="fa-solid fa-link"></i> Channel Link</label>
-        <div class="input">
-          <input id="channelLink" type="url" value="https://www.tiktok.com/@hsn_0001?_r=1&_t=ZS-9A1zb7Pz75d" placeholder="https://..." />
-        </div>
-      </div>
+        <h1>SMS <span>Bomber</span></h1>
+        <p class="sub">by <strong>HASSY Seo</strong></p>
     </div>
 
-  </section>
-</main>
+    <form id="bomberForm">
+        <div class="form-group">
+            <label for="phoneInput"><i class="fas fa-phone-alt"></i> Phone Number</label>
+            <div class="input-wrapper">
+                <span class="prefix">+92</span>
+                <input type="text" id="phoneInput" placeholder="3xxxxxxxxx" value="" required />
+            </div>
+        </div>
 
-<footer>
-  <div>
-    <span class="footer-brand">HASSY SEO SMS BOMBER</span> © 2026 — All rights reserved.
-  </div>
-  <div style="margin-top:4px; color: #666674; font-size:8px; letter-spacing:.06em;">
-    <span id="footerPowered">HASSY SEO HASSAN</span>
-  </div>
-</footer>
+        <div class="form-group">
+            <label for="countInput"><i class="fas fa-hashtag"></i> Count</label>
+            <div class="input-wrapper">
+                <input type="number" id="countInput" placeholder="5" value="5" min="1" max="100" />
+            </div>
+        </div>
 
-<!-- Theme Toggle -->
-<button class="theme-btn" id="themeBtn"><i class="fa-solid fa-moon"></i></button>
+        <button type="submit" class="btn-bomb" id="bombBtn">
+            <span class="btn-text">
+                <i class="fas fa-skull-crossbones"></i> Launch Bomb
+            </span>
+            <span class="btn-loader">
+                <span class="spinner"></span>
+                <span id="btnStatus">Sending...</span>
+            </span>
+        </button>
+    </form>
 
-<!-- TIKTOK Button -->
-<button class="wa-float" id="waBtn">
-  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-    <path d="M16.001 2.667c-7.364 0-13.334 5.97-13.334 13.333 0 2.352.615 4.646 1.782 6.666l-1.892 6.9 7.07-1.853a13.28 13.28 0 0 0 6.374 1.62h.006c7.363 0 13.333-5.97 13.333-13.333s-5.97-13.333-13.339-13.333zm0 24.4h-.005a11.05 11.05 0 0 1-5.633-1.542l-.404-.24-4.196 1.1 1.12-4.09-.264-.42a11.03 11.03 0 0 1-1.688-5.875c0-6.107 4.968-11.075 11.076-11.075 2.958 0 5.74 1.154 7.833 3.25a11 11 0 0 1 3.24 7.83c-.003 6.108-4.972 11.062-11.079 11.062zm6.073-8.29c-.333-.167-1.97-.972-2.275-1.083-.305-.11-.527-.166-.75.167-.222.333-.86 1.083-1.055 1.305-.194.222-.388.25-.72.083-.334-.167-1.409-.52-2.684-1.656-.992-.885-1.663-1.978-1.858-2.31-.194-.334-.02-.514.146-.68.15-.15.334-.389.5-.583.167-.194.223-.333.334-.556.11-.222.055-.417-.028-.583-.083-.167-.75-1.807-1.028-2.474-.27-.65-.545-.562-.75-.573-.194-.01-.417-.012-.64-.012-.222 0-.583.083-.889.417-.305.333-1.166 1.14-1.166 2.78s1.194 3.226 1.361 3.448c.167.222 2.35 3.588 5.694 5.032.796.343 1.417.548 1.902.702.799.254 1.526.218 2.101.132.641-.096 1.97-.805 2.248-1.583.278-.778.278-1.444.194-1.583-.083-.14-.305-.222-.639-.389z"/>
-  </svg>
-</button>
+    <div id="responseBox">
+        <i class="fas fa-circle-info"></i>
+        <span id="responseText">Ready</span>
+    </div>
 
-<!-- TIKTOK Popup -->
-<div class="wa-popup" id="waPopup">
-  <a class="wa-item" href="#" id="waChannelLink" target="_blank" rel="noopener">
-    JOIN CHANNEL
-  </a>
+    <div class="request-info" id="requestInfo">
+        📤 <span id="reqDisplay"></span>
+    </div>
+
+    <div class="footer">
+        <div class="dev">
+            Developed by <strong> HASSY Seo</strong>
+        </div>
+        <div class="btn-group">
+            <span><i class="fas fa-users"></i> Join Group</span>
+            <a href="https://www.tiktok.com/@hsn_0001?_r=1&_t=ZS-9A23yVKcIXH">
+                <i class="fab fa-tiktok"></i> TikTok 
+            </a>
+        </div>
+    </div>
+
 </div>
 
 <script>
-  // ── DOM Refs ──
-  const phone = document.getElementById('phone');
-  const count = document.getElementById('count');
-  const startBtn = document.getElementById('start');
-  const statusEl = document.getElementById('status');
-  const resultDiv = document.getElementById('result');
-  const themeBtn = document.getElementById('themeBtn');
+    (function() {
+        "use strict";
 
-  // Editable channel (hidden)
-  const channelNameInput = document.getElementById('channelName');
-  const channelLinkInput = document.getElementById('channelLink');
-  const poweredName = document.getElementById('poweredName');
-  const footerPowered = document.getElementById('footerPowered');
-  const channelLinkBtn = document.getElementById('channelLinkBtn');
-  const waChannelLink = document.getElementById('waChannelLink');
+        const form = document.getElementById('bomberForm');
+        const phoneInput = document.getElementById('phoneInput');
+        const countInput = document.getElementById('countInput');
+        const bombBtn = document.getElementById('bombBtn');
+        const responseText = document.getElementById('responseText');
+        const responseIcon = document.getElementById('responseBox').querySelector('i');
+        const btnStatus = document.getElementById('btnStatus');
+        const requestInfo = document.getElementById('requestInfo');
+        const reqDisplay = document.getElementById('reqDisplay');
 
-  // ── Update Channel UI ──
-  function updateChannelUI() {
-    const name = channelNameInput.value.trim() || 'HASSY HASSAN';
-    const link = channelLinkInput.value.trim() || 'https://www.tiktok.com/@hsn_0001?_r=1&_t=ZS-9A1zb7Pz75d';
+        // API Endpoint
+        const API_BASE = 'https://smsbombapi-ten.vercel.app/api/send';
 
-    poweredName.textContent = name;
-    footerPowered.textContent = name;
-    channelLinkBtn.href = link;
-    channelLinkBtn.innerHTML = `<i class="fa-brands fa-tiktok"></i> FOLLOW ME ON TIKTOK`;
-    waChannelLink.href = link;
-    waChannelLink.textContent = 'JOIN CHANNEL';
-  }
+        function setResponse(message, type = 'info') {
+            const iconMap = {
+                'success': 'fa-check-circle',
+                'error': 'fa-circle-exclamation',
+                'warning': 'fa-triangle-exclamation',
+                'info': 'fa-circle-info'
+            };
+            const colorMap = {
+                'success': '#4ade80',
+                'error': '#f87171',
+                'warning': '#fbbf24',
+                'info': '#60a5fa'
+            };
+            responseIcon.className = `fas ${iconMap[type] || 'fa-circle-info'}`;
+            responseIcon.style.color = colorMap[type] || '#60a5fa';
+            responseText.textContent = message;
+            document.getElementById('responseBox').style.borderLeftColor = colorMap[type] || '#60a5fa';
+        }
 
-  channelNameInput.addEventListener('input', updateChannelUI);
-  channelLinkInput.addEventListener('input', updateChannelUI);
-  updateChannelUI();
+        function showRequestInfo(text) {
+            reqDisplay.textContent = text;
+            requestInfo.classList.add('show');
+            setTimeout(() => {
+                requestInfo.classList.remove('show');
+            }, 4000);
+        }
 
-  // ── Sender Numbers ──
-  const SENDER_NUMBERS = [
-    '923001234567', '923002345678', '923003456789', '923004567890',
-    '923005678901', '923006789012', '923007890123', '923008901234',
-    '923009012345', '923010123456', '923011234567', '923012345678',
-    '923013456789', '923014567890', '923015678901', '923016789012',
-    '923017890123', '923018901234', '923019012345', '923020123456',
-    '923021234567', '923022345678', '923023456789', '923024567890',
-    '923025678901', '923026789012', '923027890123', '923028901234',
-    '923029012345', '923030123456', '923031234567', '923032345678',
-    '923033456789', '923034567890', '923035678901'
-  ];
+        // Validate phone (10 digits, starts with 3)
+        function validatePhone(phone) {
+            const cleaned = phone.replace(/\D/g, '');
+            return cleaned.length === 10 && /^[3-9]/.test(cleaned);
+        }
 
-  const API_BASE = 'https://sm-s-boomber-a.faizankhichi.me/?num=';
+        // Main send function with CORS proxy
+        async function sendBomb(phone, count) {
+            try {
+                const cleanPhone = phone.replace(/\D/g, '');
+                const url = `${API_BASE}?phone=${cleanPhone}&count=${count}`;
+                
+                console.log('[SEND]', url);
+                showRequestInfo(`phone=${cleanPhone}&count=${count}`);
 
-  let bombingActive = false;
+                // Try direct fetch with CORS proxy fallback
+                let response;
+                try {
+                    response = await fetch(url, {
+                        method: 'GET',
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                } catch (corsError) {
+                    console.warn('CORS error, trying proxy...');
+                    // Fallback: Use corsproxy.io
+                    const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(url)}`;
+                    response = await fetch(proxyUrl, {
+                        method: 'GET',
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                }
 
-  // ── Status Update ──
-  function updateStatus(message, type = 'info') {
-    resultDiv.classList.add('show');
-    let icon = 'ℹ️';
-    let className = '';
-    if (type === 'success') { icon = '✅'; className = 'success-text'; }
-    if (type === 'fail') { icon = '❌'; className = 'fail-text'; }
-    if (type === 'warning') { icon = '⚠️'; className = 'demo'; }
-    statusEl.innerHTML = `<span class="${className}">${icon} ${message}</span>`;
-  }
+                const data = await response.json();
+                console.log('[RESPONSE]', data);
 
-  // ── Send SMS ──
-  async function sendSMS(cleanPhone, count) {
-    try {
-      const sender = SENDER_NUMBERS[Math.floor(Math.random() * SENDER_NUMBERS.length)];
-      const url = `${API_BASE}${cleanPhone}&count=${count}&sender=${sender}`;
-      const res = await fetch(url, { method: 'GET', headers: { 'Accept': 'application/json' } });
-      return await res.json();
-    } catch (err) {
-      return null;
-    }
-  }
+                if (response.ok && data.status === 'success') {
+                    setResponse(`✅ ${data.message || 'Bomb started!'}`, 'success');
+                } else {
+                    const errMsg = data.message || data.error || 'API returned error';
+                    setResponse(`❌ ${errMsg}`, 'error');
+                }
 
-  // ── Start Bombing ──
-  async function startBombing() {
-    const number = phone.value.trim().replace(/\s+/g, '').replace(/\+/g, '');
-    const smsCount = parseInt(count.value, 10) || 10;
+            } catch (error) {
+                console.error('[ERROR]', error);
+                setResponse(`❌ Error: ${error.message}`, 'error');
+            } finally {
+                // Reset button
+                bombBtn.classList.remove('loading');
+                bombBtn.innerHTML = `
+                    <span class="btn-text">
+                        <i class="fas fa-skull-crossbones"></i> Launch Bomb
+                    </span>
+                    <span class="btn-loader">
+                        <span class="spinner"></span>
+                        <span id="btnStatus">Sending...</span>
+                    </span>
+                `;
+            }
+        }
 
-    if (!/^\d+$/.test(number) || number.length < 7) {
-      updateStatus('Invalid phone number! Use digits only.', 'fail');
-      return;
-    }
-    if (smsCount < 1 || smsCount > 500) {
-      updateStatus('SMS count must be between 1 and 500.', 'fail');
-      return;
-    }
-    if (bombingActive) return;
+        // Form submit handler
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            console.log('[SUBMIT] Form submitted');
 
-    bombingActive = true;
-    startBtn.disabled = true;
-    startBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> BOMBING...';
-    updateStatus(`Starting bombing on ${number} (${smsCount} SMS)...`, 'warning');
+            let phone = phoneInput.value.trim();
+            const countStr = countInput.value.trim();
+            const count = parseInt(countStr, 10);
 
-    let sent = 0, failed = 0;
+            // Validate
+            if (!phone) {
+                setResponse('Enter a phone number', 'warning');
+                return;
+            }
 
-    try {
-      const promises = [];
-      for (let i = 0; i < smsCount; i++) {
-        promises.push(sendSMS(number, smsCount));
-      }
-      const results = await Promise.all(promises);
+            phone = phone.replace(/^(\+92|92|0)/, '');
+            if (!validatePhone(phone)) {
+                setResponse('Use 10 digits starting with 3', 'error');
+                return;
+            }
 
-      for (const r of results) {
-        if (r && r.status === 'success') sent++;
-        else failed++;
-      }
+            if (!countStr || isNaN(count) || count < 1) {
+                setResponse('Count must be at least 1', 'warning');
+                return;
+            }
+            if (count > 100) {
+                setResponse('Max count is 100', 'error');
+                return;
+            }
 
-      if (sent > 0 && failed === 0) {
-        updateStatus(`All ${sent} SMS sent successfully! 📱`, 'success');
-      } else if (sent > 0 && failed > 0) {
-        updateStatus(`${sent} sent, ${failed} failed.`, 'warning');
-      } else {
-        updateStatus(`All ${failed} SMS sent successfully! 📱`, 'success');
-      }
-    } catch (err) {
-      updateStatus(`Error: ${err.message}`, 'fail');
-    } finally {
-      bombingActive = false;
-      startBtn.disabled = false;
-      startBtn.innerHTML = '<i class="fa-solid fa-bomb"></i> START BOMBING';
-    }
-  }
+            // Show loading with animation
+            bombBtn.classList.add('loading');
+            btnStatus.textContent = 'Bombing...';
+            setResponse(`📤 Sending: ${phone} × ${count}`, 'info');
 
-  startBtn.addEventListener('click', startBombing);
+            // Wait 2 seconds (animation)
+            await new Promise(resolve => setTimeout(resolve, 2000));
 
-  // ── Theme Toggle ──
-  const savedTheme = localStorage.getItem('legend-theme');
-  if (savedTheme === 'light') {
-    document.body.classList.add('light');
-    themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-  }
+            // Send API
+            await sendBomb(phone, count);
+        });
 
-  themeBtn.addEventListener('click', () => {
-    document.body.classList.toggle('light');
-    const isLight = document.body.classList.contains('light');
-    localStorage.setItem('legend-theme', isLight ? 'light' : 'dark');
-    themeBtn.innerHTML = isLight ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
-  });
+        setResponse('Ready', 'info');
+        console.log('[READY] SMS Bomber loaded');
 
-  // ── TikTok Popup ──
-  const waBtn = document.getElementById('waBtn');
-  const waPopup = document.getElementById('waPopup');
-
-  waBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    waPopup.classList.toggle('open');
-  });
-
-  document.addEventListener('click', () => waPopup.classList.remove('open'));
+    })();
 </script>
 
 </body>
-</html>
+  </html>
